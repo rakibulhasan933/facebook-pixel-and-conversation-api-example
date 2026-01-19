@@ -12,9 +12,15 @@ const FacebookPixel = () => {
 
     useEffect(() => {
         if (!loaded) return;
+        const pageNames: Record<string, string> = {
+            "/": "HomePage",
+            "/contact": "ContactPage",
+        }
 
-        pixel.pageview();
-        console.log(`pageView in ${pathname}`)
+        const pageName = pageNames[pathname] || pathname.slice(1).replace(/[/-]/g, " ").replace(/\b\w/g, (char) => char.toUpperCase()) || "UnnamedPage";
+
+        pixel.pageview({ page: pageName });
+        console.log(`[v0] Facebook Pixel pageview tracked: ${pageName} (${pathname})`);
     }, [pathname, loaded]);
 
     return (
