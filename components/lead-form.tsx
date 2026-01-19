@@ -24,6 +24,9 @@ export default function LeadForm({ pageType }: LeadFormProps) {
     city: "",
     zip: "",
     gender: "",
+    dateOfBirth: "",
+    externalId: "",
+    facebookLoginId: "",
   })
 
   const [isLoading, setIsLoading] = useState(false)
@@ -32,7 +35,7 @@ export default function LeadForm({ pageType }: LeadFormProps) {
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
+  ): void => {
     const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
@@ -103,6 +106,9 @@ export default function LeadForm({ pageType }: LeadFormProps) {
         city: "",
         zip: "",
         gender: "",
+        dateOfBirth: "",
+        externalId: "",
+        facebookLoginId: "",
       })
 
       // Reset submitted state after 5 seconds
@@ -279,6 +285,51 @@ export default function LeadForm({ pageType }: LeadFormProps) {
             onChange={handleChange}
             className="w-full"
           />
+        </div>
+
+        <div>
+          <label htmlFor="dateOfBirth" className="block text-sm font-medium text-foreground mb-2">
+            Date of Birth
+          </label>
+          <Input
+            id="dateOfBirth"
+            name="dateOfBirth"
+            type="date"
+            value={formData.dateOfBirth}
+            onChange={handleChange}
+            className="w-full"
+          />
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="externalId" className="block text-sm font-medium text-foreground mb-2">
+              External ID
+            </label>
+            <Input
+              id="externalId"
+              name="externalId"
+              type="text"
+              placeholder="Your customer ID"
+              value={formData.externalId}
+              onChange={handleChange}
+              className="w-full"
+            />
+          </div>
+          <div>
+            <label htmlFor="facebookLoginId" className="block text-sm font-medium text-foreground mb-2">
+              Facebook Login ID
+            </label>
+            <Input
+              id="facebookLoginId"
+              name="facebookLoginId"
+              type="text"
+              placeholder="Facebook user ID"
+              value={formData.facebookLoginId}
+              onChange={handleChange}
+              className="w-full"
+            />
+          </div>
         </div>
 
         {pageType === "contact" && (

@@ -36,7 +36,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en"
+      className="hydrated"
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -49,13 +51,8 @@ export default function RootLayout({
               t.src=v;s=b.getElementsByTagName(e)[0];
               s.parentNode.insertBefore(t,s)}(window, document,'script',
               'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '${process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID}');
+              fbq('init', '${process.env.FACEBOOK_PIXEL_ID}');
               fbq('track', 'PageView');
-              fbq('trackCustom', 'ViewContent', {
-                content_name: window.location.pathname,
-                content_type: 'travel_page',
-              });
-              console.log('[v0] Facebook Pixel initialized on page:', window.location.pathname);
             `,
           }}
         />
@@ -64,7 +61,7 @@ export default function RootLayout({
             height="1"
             width="1"
             style={{ display: "none" }}
-            src={`https://www.facebook.com/tr?id=${process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID}&ev=PageView&noscript=1`}
+            src={`https://www.facebook.com/tr?id=${process.env.FACEBOOK_PIXEL_ID}&ev=PageView&noscript=1`}
           />
         </noscript>
       </head>

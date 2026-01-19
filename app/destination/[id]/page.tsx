@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react"
+import { use, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, MapPin, Clock, Star, Calendar, Globe } from "lucide-react"
@@ -13,7 +13,8 @@ interface PageProps {
 }
 
 export default function DestinationPage({ params }: PageProps) {
-  const { id } = params as { id: string }
+
+  const { id } = use(params);
   const destination = destinations.find((d) => d.id === id)
 
   useEffect(() => {
@@ -31,7 +32,6 @@ export default function DestinationPage({ params }: PageProps) {
           contentId: destination.id,
           contentType: "travel_package",
           value: destination.price,
-          currency: "USD",
           pageType: "destination_detail",
           fbp,
           fbc,
@@ -52,7 +52,6 @@ export default function DestinationPage({ params }: PageProps) {
             content_ids: [destination.id],
             content_type: "product",
             value: destination.price,
-            currency: "USD",
           })
         }
       } catch (error) {

@@ -1,5 +1,40 @@
 import crypto from 'crypto';
 
+export function sha256(value: string): string {
+  return crypto
+    .createHash("sha256")
+    .update(value.trim().toLowerCase(), "utf8")
+    .digest("hex")
+}
+
+export function hashName(name?: string): string | undefined {
+  if (!name) return undefined
+  return sha256(name)
+}
+
+/**
+ * City / State / ZIP / Country hashing
+ */
+export function hashLocation(value?: string): string | undefined {
+  if (!value) return undefined
+  return sha256(value)
+}
+
+export function hashGender(gender?: string): string | undefined {
+  if (!gender) return undefined
+
+  const g = gender.toLowerCase()
+  if (g === "male" || g === "m") return sha256("m")
+  if (g === "female" || g === "f") return sha256("f")
+
+  return undefined
+}
+
+export function hashExternalId(id?: string): string | undefined {
+  if (!id) return undefined
+  return sha256(id)
+}
+
 // Hash PII data according to Facebook specs
 export function hashEmail(email: string): string {
   return crypto
@@ -48,6 +83,16 @@ export function hashCountry(country: string): string {
   return crypto
     .createHash('sha256')
     .update(country.toLowerCase().trim().replace(/\s/g, ''))
+    .digest('hex');
+}
+
+export function hashDateOfBirth(dateString: string): string {
+  // Format: YYYYMMDD
+  if (!dateString) return '';
+  const cleaned = dateString.replace(/-/g, '');
+  return crypto
+    .createHash('sha256')
+    .update(cleaned)
     .digest('hex');
 }
 
