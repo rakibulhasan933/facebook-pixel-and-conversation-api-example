@@ -47,8 +47,6 @@ export async function POST(request: NextRequest) {
             fbc: data.fbc || undefined,
           },
           custom_data: {
-            value: data.value || 0,
-            currency: data.currency || "USD",
             content_name: data.contentName,
             content_ids: [data.contentId],
             content_type: data.contentType || "product",
@@ -68,7 +66,7 @@ export async function POST(request: NextRequest) {
 
     // Send to Facebook Conversion API
     const response = await fetch(
-      `https://graph.facebook.com/v18.0/${process.env.FACEBOOK_PIXEL_ID}/events?access_token=${process.env.FACEBOOK_CONVERSION_API_TOKEN}`,
+      `https://graph.facebook.com/v18.0/${process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID}/events?access_token=${process.env.FACEBOOK_CONVERSION_API_TOKEN}`,
       {
         method: "POST",
         headers: {

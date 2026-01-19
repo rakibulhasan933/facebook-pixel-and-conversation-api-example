@@ -54,8 +54,6 @@ export default function RootLayout({
               fbq('trackCustom', 'ViewContent', {
                 content_name: window.location.pathname,
                 content_type: 'travel_page',
-                value: 0,
-                currency: 'USD'
               });
               console.log('[v0] Facebook Pixel initialized on page:', window.location.pathname);
             `,
