@@ -24,4 +24,4 @@ initializeFacebookPixel(
     "https://connect.facebook.net/en_US/fbevents.js",
 );
 
-window.fbq("init", PIXEL_ID);
+window.fbq("init", "860425070289548"); // Insert your pixel ID here.
